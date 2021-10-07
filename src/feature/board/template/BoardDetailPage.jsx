@@ -1,8 +1,10 @@
 import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+
 import { dummyBoardEntities } from "../../../common/data/dummyBoardData";
 import DetailHeader from "../component/DetailHeader";
+import Reply from "../../reply/template/Reply";
 
 const Container = styled.div`
   width: 80%;
@@ -25,6 +27,8 @@ const Content = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
+  margin-bottom: 20px;
+
   color: #000;
 `;
 
@@ -45,6 +49,7 @@ const BoardDetailPage = () => {
         updatedAt={board.updatedAt}
       />
       <Content>{board.content}</Content>
+      <Reply />
     </Container>
   ) : null;
 };
