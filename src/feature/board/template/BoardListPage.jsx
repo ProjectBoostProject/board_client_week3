@@ -1,3 +1,4 @@
+import { useRouter } from "next/dist/client/router";
 import React from "react";
 import styled from "styled-components";
 import BoardList from "../component/BoardList";
@@ -15,7 +16,6 @@ const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
 `;
-
 const ButtonSection = styled.div`
   width: 100%;
 
@@ -28,11 +28,18 @@ const ButtonSection = styled.div`
 `;
 
 const BoardListPage = () => {
+  const router = useRouter();
+  const onClick = () => {
+    router.push(`/boards/create`);
+  };
+
   return (
     <Container>
       <BoardList />
       <ButtonSection>
-        <button type="button">글 쓰기</button>
+        <button type="button" onClick={onClick}>
+          글 쓰기
+        </button>
       </ButtonSection>
     </Container>
   );
