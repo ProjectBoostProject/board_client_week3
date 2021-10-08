@@ -1,6 +1,7 @@
 import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { createBoardAPI } from "../utils/board.api";
 
 const Container = styled.div`
   width: 100%;
@@ -60,6 +61,7 @@ const CreateBoardPage = () => {
   const [content, setContent] = useState("");
 
   const onSubmit = () => {
+    createBoardAPI(writer, password, title, content);
     router.push("/boards");
   };
   return (
