@@ -23,9 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
-<<<<<<< HEAD
-/.next
-=======
 
 /.next
->>>>>>> c08ffe0724f053e5bfe22d10d43540063f2a6e4d
