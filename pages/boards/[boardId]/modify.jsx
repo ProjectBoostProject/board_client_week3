@@ -1,7 +1,8 @@
 import React from "react";
+import ModifyBoardPage from "../../../src/feature/board/template/ModifyBoardPage";
 
 const modify = () => {
-  return <div>글 수정 화면입니다.</div>;
+  return <ModifyBoardPage />;
 };
 
 export default modify;

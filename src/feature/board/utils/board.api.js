@@ -33,7 +33,10 @@ export const createBoardAPI = async (writer, password, title, content) => {
   });
   return data;
 };
-
+export const modifyBoardAPI = async (boardId) => {
+  const { data } = await axios.put(`${baseURL}/update/${boardId}`);
+  return data;
+};
 export const deleteBoardAPI = async (boardId) => {
   await axios.delete(`${baseURL}/delete/${boardId}`);
 };
