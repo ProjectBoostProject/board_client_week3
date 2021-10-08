@@ -1,11 +1,14 @@
 {
   "name": "initialized_project",
+  "homepage": "http://201524547.github.io/board_client_week1",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "axios": "0.22.0",
+    "gh-pages": "3.2.3",
     "next": "11.1.2",
     "nextjs": "0.0.3",
     "prettier": "2.4.1",
@@ -30,8 +33,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "set PORT=3001 && next build && next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

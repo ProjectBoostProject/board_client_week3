@@ -1,13 +1,15 @@
+import { useRouter } from "next/dist/client/router";
 import React from "react";
 import styled from "styled-components";
+import { deleteBoardAPI } from "../utils/board.api";
 
 const Container = styled.div`
   width: 100%;
   height: 60px;
 
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: flex-start;
 
   padding: 10px 5px 10px 5px;
@@ -26,12 +28,34 @@ const Writer = styled.span`
   font-size: 12px;
   font-weight: lighter;
 `;
+const Button = styled.button`
+  margin-right: 4px;
+`;
 
-const DetailHeader = ({ title, writer, updatedAt }) => {
+const DetailHeader = ({ id, title, writer, updatedAt }) => {
+  const router = useRouter();
+
+  const onModify = () => {
+    router.push(`/boards/${id}/modify`);
+  };
+  const onDelete = () => {
+    deleteBoardAPI(id);
+    router.push("/boards");
+  };
   return (
     <Container>
-      <Title>{title}</Title>
-      <Writer>{`${writer} |  ${updatedAt}`}</Writer>
+      <div>
+        <Title>{title}</Title>
+        <Writer>{`${writer} |  ${updatedAt}`}</Writer>
+      </div>
+      <div>
+        <Button type="button" onClick={onModify}>
+          수정
+        </Button>
+        <Button type="button" onClick={onDelete}>
+          삭제
+        </Button>
+      </div>
     </Container>
   );
 };
