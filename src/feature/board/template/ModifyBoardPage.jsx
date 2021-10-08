@@ -71,7 +71,7 @@ const ModifyBoardPage = () => {
   }, []);
 
   const onSubmit = () => {
-    modifyBoardAPI(writer, password, title, content).then(() => {
+    modifyBoardAPI(boardId, writer, password, title, content).then(() => {
       router.push("/boards");
     });
   };
