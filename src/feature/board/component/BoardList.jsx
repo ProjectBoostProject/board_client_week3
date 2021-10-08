@@ -19,7 +19,7 @@ const BoardList = () => {
   const [boardList, setBoardList] = useState([]);
   useEffect(() => {
     getBoardListAPI().then((boards) => setBoardList(boards));
-  });
+  }, []);
 
   return (
     <Container>
