@@ -6,7 +6,7 @@ export const getBoardListAPI = async () => {
   try {
     const { data } = await axios.get(`${baseURL}/boards`);
     console.log(data);
-    return data;
+    return data.boards;
   } catch (error) {
     console.log("Get Board List API Error : ", error.message);
     return [];
@@ -15,11 +15,11 @@ export const getBoardListAPI = async () => {
 
 export const getBoardAPI = async (boardId) => {
   try {
-    const { data } = await axios.get(`${baseURL}/boards/${boardId}`);
+    const { data } = await axios.get(`${baseURL}/board/${boardId}`);
     console.log(data);
-    return data;
+    return data.board;
   } catch (error) {
-    console.log("Get Board List API Error : ", error.message);
+    console.log("Get Board API Error : ", error.message);
     return { title: "", content: "", updateTime: "", writer: "" };
   }
 };
