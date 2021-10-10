@@ -48,6 +48,7 @@ const BoardDetailPage = () => {
         title={board.title}
         writer={board.writer}
         updatedAt={board.updatedAt}
+        password={board.password}
       />
       <Content>{board.content}</Content>
       <Reply />
