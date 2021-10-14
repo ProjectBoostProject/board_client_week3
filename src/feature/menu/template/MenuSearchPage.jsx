@@ -1,9 +1,9 @@
+import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { dummyMenuData } from "../../../common/data/dummyMenuData";
 import MenuListItem from "../component/MenuListItem";
 import MenuSearchBar from "../component/MenuSearchBar";
-import { getMenuListAPI } from "../utils/menu.api";
+import { getMenuSearchListAPI } from "../utils/menu.api";
 
 const Container = styled.div`
   width: 100%;
@@ -17,17 +17,22 @@ const Container = styled.div`
 `;
 
 const MenuSearchPage = () => {
+  const router = useRouter();
   const [searchMenuName, setSearchMenuName] = useState("");
   const [menuList, setMenuList] = useState([]);
   useEffect(() => {
     if (searchMenuName.length > 0)
-      getMenuListAPI(searchMenuName).then((data) => {
+      getMenuSearchListAPI(searchMenuName).then((data) => {
         setMenuList(data);
       });
     else {
       setMenuList([]);
     }
   }, [searchMenuName]);
+
+  const onClick = (id) => {
+    router.push(`${id}`);
+  };
   return (
     <Container>
       <MenuSearchBar
@@ -36,8 +41,12 @@ const MenuSearchPage = () => {
           setSearchMenuName(target.value);
         }}
       />
-      {menuList.map(({ boardName, introduce }) => (
-        <MenuListItem menuName={boardName} introduce={introduce} />
+      {menuList.map(({ id, boardName, introduce }) => (
+        <MenuListItem
+          menuName={boardName}
+          introduce={introduce}
+          onClick={() => onClick(id)}
+        />
       ))}
     </Container>
   );

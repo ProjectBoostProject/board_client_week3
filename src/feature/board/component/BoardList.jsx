@@ -16,19 +16,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const BoardList = () => {
-  const [boardList, setBoardList] = useState([]);
-  const router = useRouter();
-  const { menuId } = router.query;
-
-  useEffect(() => {
-    if (menuId)
-      getBoardListAPI(menuId).then(({ boards }) => {
-        console.log(boards);
-        setBoardList(boards);
-      });
-  }, [menuId]);
-
+const BoardList = ({ boardList }) => {
   return (
     <Container>
       <BoardHeader />

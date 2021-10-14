@@ -30,9 +30,9 @@ const Container = styled.div`
   }
 `;
 
-const MenuListItem = ({ menuName, introduce }) => {
+const MenuListItem = ({ menuName, introduce, onClick }) => {
   return (
-    <Container>
+    <Container onClick={onClick}>
       <span className="menu-name">{menuName}</span>
       <span className="introduce">{introduce}</span>
     </Container>

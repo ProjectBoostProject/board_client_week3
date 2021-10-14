@@ -37,9 +37,11 @@ const ButtonSection = styled.div`
 
 const DetailHeader = ({ id, title, writer, updatedAt, password }) => {
   const router = useRouter();
+  const { menuId } = router.query;
 
   const onModify = (inputPassword) => {
-    if (password === inputPassword) router.push(`/boards/${id}/modify`);
+    if (password === inputPassword)
+      router.push(`/boards/${menuId}/${id}/modify`);
     else alert("비밀번호가 잘못되었습니다.");
   };
   const onDelete = (inputPassword) => {

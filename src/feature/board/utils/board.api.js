@@ -2,9 +2,11 @@ import axios from "axios";
 
 const baseURL = "http://localhost:8080/api";
 
-export const getBoardListAPI = async (menuId) => {
+export const getBoardListAPI = async (menuId, pageNum = 1) => {
   try {
-    const { data } = await axios.get(`${baseURL}/boards/${menuId}`);
+    const { data } = await axios.get(
+      `${baseURL}/boards/${menuId}?pageNum=${pageNum}`
+    );
     console.log("Get Board List : ", data);
     return data;
   } catch (error) {

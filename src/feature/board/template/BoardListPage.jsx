@@ -2,6 +2,7 @@ import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BoardList from "../component/BoardList";
+import BoardPage from "../component/BoardPage";
 import BoardTitle from "../component/BoardTitle";
 import { getBoardListAPI } from "../utils/board.api";
 
@@ -34,20 +35,39 @@ const BoardListPage = () => {
   const { menuId } = router.query;
 
   const [menu, setMenu] = useState(null);
+  const [curPage, setCurPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
+  const [boardList, setBoardList] = useState([]);
 
   useEffect(() => {
     if (menuId !== undefined)
-      getBoardListAPI(menuId).then((data) => setMenu(data.menu));
-  }, [menuId]);
+      getBoardListAPI(menuId, curPage).then((data) => {
+        setBoardList(data.boards);
+        setMenu(data.menu);
+        setTotalPage(Math.floor((data.totalCount - 1) / 10 + 1));
+      });
+  }, [menuId, curPage]);
 
   const onClick = () => {
     router.push(`/boards/${menuId}/create`);
+  };
+  const onPlus = () => {
+    if (curPage < totalPage) setCurPage(curPage + 1);
+  };
+  const onMinus = () => {
+    if (curPage > 1) setCurPage(curPage - 1);
   };
 
   return (
     <Container>
       <BoardTitle menuName={menu?.boardName} introduce={menu?.introduce} />
-      <BoardList />
+      <BoardList boardList={boardList} />
+      <BoardPage
+        curPage={curPage}
+        totalPage={totalPage}
+        onMinus={onMinus}
+        onPlus={onPlus}
+      />
       <ButtonSection>
         <button type="button" onClick={onClick}>
           글 쓰기

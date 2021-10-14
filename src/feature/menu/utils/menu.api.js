@@ -14,10 +14,27 @@ export const addMenuAPI = async (boardName, introduce) => {
   }
 };
 
-export const getMenuListAPI = async (boardName) => {
+export const getMenuListAPI = async () => {
+  try {
+    const { data } = await axios.get(`${baseURL}/menus`, {
+      headers: { "Content-Type": "application/json;charset=UTF-8" },
+    });
+    return data.menus;
+  } catch (error) {
+    alert("게시판 목록 불러오기에 실패했습니다.");
+    return [];
+  }
+};
+
+export const getMenuSearchListAPI = async (boardName) => {
   try {
     console.log(boardName);
-    const { data } = await axios.get(`${baseURL}/menus?boarName=${boardName}`);
+    const { data } = await axios.get(
+      `${baseURL}/menus?boardName=${boardName}`,
+      {
+        headers: { "Content-Type": "application/json;charset=UTF-8" },
+      }
+    );
     return data.menus;
   } catch (error) {
     alert("게시판 목록 불러오기에 실패했습니다.");
