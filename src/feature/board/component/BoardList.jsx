@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { dummyBoardList } from "../../../common/data/dummyBoardData";
+import { getBoardListAPI } from "../utils/board.api";
 import BoardHeader from "./BoardHeader";
 import BoardItem from "./BoardItem";
 
@@ -16,10 +16,15 @@ const Container = styled.div`
 `;
 
 const BoardList = () => {
+  const [boardList, setBoardList] = useState([]);
+  useEffect(() => {
+    getBoardListAPI().then((boards) => setBoardList(boards));
+  }, []);
+
   return (
     <Container>
       <BoardHeader />
-      {dummyBoardList.map((board) => (
+      {boardList.map((board) => (
         <BoardItem
           key={board.id}
           id={board.id}

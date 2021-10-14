@@ -1,7 +1,8 @@
 import React from "react";
+import CreateBoardPage from "../../src/feature/board/template/CreateBoardPage";
 
 const create = () => {
-  return <div>게시글 작성 화면입니다.</div>;
+  return <CreateBoardPage />;
 };
 
 export default create;

@@ -33,6 +33,5 @@ export const getReplyList = (Id) => {
   const result = dummyReplyList.filter(
     (reply) => reply.boardId === parseInt(Id, 10)
   );
-  console.log("result : ", result);
   return result;
 };

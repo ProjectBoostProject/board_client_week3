@@ -2,9 +2,9 @@ import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { dummyBoardEntities } from "../../../common/data/dummyBoardData";
 import DetailHeader from "../component/DetailHeader";
 import Reply from "../../reply/template/Reply";
+import { getBoardAPI } from "../utils/board.api";
 
 const Container = styled.div`
   width: 80%;
@@ -38,15 +38,17 @@ const BoardDetailPage = () => {
 
   const [board, setBoard] = useState(null);
   useEffect(() => {
-    setBoard(dummyBoardEntities[boardId]);
+    getBoardAPI(boardId).then((b) => setBoard(b));
   }, [boardId]);
 
   return board ? (
     <Container>
       <DetailHeader
+        id={boardId}
         title={board.title}
         writer={board.writer}
         updatedAt={board.updatedAt}
+        password={board.password}
       />
       <Content>{board.content}</Content>
       <Reply />
