@@ -1,7 +1,9 @@
 import { useRouter } from "next/dist/client/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BoardList from "../component/BoardList";
+import BoardTitle from "../component/BoardTitle";
+import { getBoardListAPI } from "../utils/board.api";
 
 const Container = styled.div`
   width: 80%;
@@ -29,12 +31,22 @@ const ButtonSection = styled.div`
 
 const BoardListPage = () => {
   const router = useRouter();
+  const { menuId } = router.query;
+
+  const [menu, setMenu] = useState(null);
+
+  useEffect(() => {
+    if (menuId !== undefined)
+      getBoardListAPI(menuId).then((data) => setMenu(data.menu));
+  }, [menuId]);
+
   const onClick = () => {
-    router.push(`/boards/create`);
+    router.push(`/boards/${menuId}/create`);
   };
 
   return (
     <Container>
+      <BoardTitle menuName={menu?.boardName} introduce={menu?.introduce} />
       <BoardList />
       <ButtonSection>
         <button type="button" onClick={onClick}>

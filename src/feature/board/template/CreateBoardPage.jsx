@@ -54,6 +54,7 @@ const Content = styled.textarea`
 
 const CreateBoardPage = () => {
   const router = useRouter();
+  const { menuId } = router.query;
 
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
@@ -61,8 +62,8 @@ const CreateBoardPage = () => {
   const [content, setContent] = useState("");
 
   const onSubmit = () => {
-    createBoardAPI(writer, password, title, content);
-    router.push("/boards");
+    createBoardAPI(writer, password, title, content, menuId);
+    router.push(`/boards/${menuId}`);
   };
   return (
     <Container>

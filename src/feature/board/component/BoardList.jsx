@@ -1,7 +1,8 @@
+import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-
 import { getBoardListAPI } from "../utils/board.api";
+
 import BoardHeader from "./BoardHeader";
 import BoardItem from "./BoardItem";
 
@@ -17,9 +18,16 @@ const Container = styled.div`
 
 const BoardList = () => {
   const [boardList, setBoardList] = useState([]);
+  const router = useRouter();
+  const { menuId } = router.query;
+
   useEffect(() => {
-    getBoardListAPI().then((boards) => setBoardList(boards));
-  }, []);
+    if (menuId)
+      getBoardListAPI(menuId).then(({ boards }) => {
+        console.log(boards);
+        setBoardList(boards);
+      });
+  }, [menuId]);
 
   return (
     <Container>

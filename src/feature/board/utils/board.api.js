@@ -2,11 +2,11 @@ import axios from "axios";
 
 const baseURL = "http://localhost:8080/api";
 
-export const getBoardListAPI = async () => {
+export const getBoardListAPI = async (menuId) => {
   try {
-    const { data } = await axios.get(`${baseURL}/boards`);
-    console.log(data);
-    return data.boards;
+    const { data } = await axios.get(`${baseURL}/boards/${menuId}`);
+    console.log("Get Board List : ", data);
+    return data;
   } catch (error) {
     console.log("Get Board List API Error : ", error.message);
     return [];
@@ -24,12 +24,19 @@ export const getBoardAPI = async (boardId) => {
   }
 };
 
-export const createBoardAPI = async (writer, password, title, content) => {
+export const createBoardAPI = async (
+  writer,
+  password,
+  title,
+  content,
+  menuId
+) => {
   const { data } = await axios.post(`${baseURL}/add`, {
     writer,
     password,
     title,
     content,
+    menuId,
   });
   return data;
 };
