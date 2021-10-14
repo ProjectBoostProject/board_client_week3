@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -72,6 +73,7 @@ const ModifyBoardPage = () => {
 
   const onSubmit = () => {
     modifyBoardAPI(boardId, writer, password, title, content).then(() => {
+      alert("수정되었습니다.");
       router.push("/boards");
     });
   };

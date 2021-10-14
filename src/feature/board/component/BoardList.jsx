@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { dummyBoardList } from "../../../common/data/dummyBoardData";
 
 import { getBoardListAPI } from "../utils/board.api";
 import BoardHeader from "./BoardHeader";
@@ -17,7 +16,7 @@ const Container = styled.div`
 `;
 
 const BoardList = () => {
-  const [boardList, setBoardList] = useState(dummyBoardList);
+  const [boardList, setBoardList] = useState([]);
   useEffect(() => {
     getBoardListAPI().then((boards) => setBoardList(boards));
   }, []);

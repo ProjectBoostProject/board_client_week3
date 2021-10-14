@@ -29,7 +29,7 @@ const PopUp = ({ title, onEnd }) => {
         {title}
       </button>
       {isClicked && (
-        <PopUpSection onBlur={() => setIsClicked(false)}>
+        <PopUpSection>
           <PasswordConfirm onEnd={onEnd} />
         </PopUpSection>
       )}
