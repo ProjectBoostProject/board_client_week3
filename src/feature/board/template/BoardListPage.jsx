@@ -39,14 +39,20 @@ const BoardListPage = () => {
   const [totalPage, setTotalPage] = useState(1);
   const [boardList, setBoardList] = useState([]);
 
+  const getBoardList = () => {
+    getBoardListAPI(menuId, curPage).then((data) => {
+      setBoardList(data.boards);
+      setMenu(data.menu);
+      setTotalPage(Math.floor((data.totalCount - 1) / 10 + 1) || 1);
+    });
+  };
   useEffect(() => {
-    if (menuId !== undefined)
-      getBoardListAPI(menuId, curPage).then((data) => {
-        setBoardList(data.boards);
-        setMenu(data.menu);
-        setTotalPage(Math.floor((data.totalCount - 1) / 10 + 1));
-      });
-  }, [menuId, curPage]);
+    if (menuId !== undefined) getBoardList();
+  }, [curPage]);
+  useEffect(() => {
+    if (menuId !== undefined) getBoardList();
+    setCurPage(1);
+  }, [menuId]);
 
   const onClick = () => {
     router.push(`/boards/${menuId}/create`);
