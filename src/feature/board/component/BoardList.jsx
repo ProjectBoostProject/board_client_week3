@@ -1,7 +1,5 @@
-import { useRouter } from "next/dist/client/router";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { getBoardListAPI } from "../utils/board.api";
 
 import BoardHeader from "./BoardHeader";
 import BoardItem from "./BoardItem";
