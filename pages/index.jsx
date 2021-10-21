@@ -1,11 +1,12 @@
-import React from 'react'
+import { useRouter } from "next/dist/client/router";
+import React, { useEffect } from "react";
 
 const index = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/login");
+  }, []);
+  return <div />;
+};
 
-export default index
+export default index;
