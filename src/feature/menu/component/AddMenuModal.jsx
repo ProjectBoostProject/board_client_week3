@@ -1,9 +1,9 @@
-import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import Modal from "../../../common/component/Modal";
-import { addMenuAPI } from "../utils/menu.api";
+import { addMenuStart } from "../utils/menu.action";
 
 const Container = styled.div`
   width: 100%;
@@ -53,13 +53,13 @@ const Button = styled.button`
 `;
 
 const AddMenuModal = ({ visible, onClose }) => {
-  const router = useRouter();
+  const dispatch = useDispatch();
+
   const [menuName, setMenuName] = useState("");
   const [introduce, setIntroduce] = useState("");
 
   const onSubmit = async () => {
-    const { id } = await addMenuAPI(menuName, introduce);
-    router.push(`/boards/${id}`);
+    dispatch(addMenuStart(menuName, introduce));
     onClose();
   };
 

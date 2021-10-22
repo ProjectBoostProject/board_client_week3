@@ -28,7 +28,6 @@ export const getMenuListAPI = async () => {
 
 export const getMenuSearchListAPI = async (boardName) => {
   try {
-    console.log(boardName);
     const { data } = await axios.get(
       `${baseURL}/menus?boardName=${boardName}`,
       {
